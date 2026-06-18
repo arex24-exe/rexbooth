@@ -282,7 +282,7 @@ btnFinish.addEventListener('click', function() {
 
     // 3. Mulai proses screenshot dengan membawa data ukuran pastinya
     html2canvas(areaCapture, {
-        scale: 2, 
+        scale: 4, 
         backgroundColor: null,
         width: lebarPasti,   // Kasih tahu ukuran lebarnya ke html2canvas
         height: tinggiPasti  // Kasih tahu ukuran tingginya ke html2canvas
