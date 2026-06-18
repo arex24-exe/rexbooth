@@ -1,0 +1,242 @@
+/* --- RESET DASAR --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', Arial, sans-serif;
+}
+
+/* --- 1. Latar Belakang Luar (Biru Polkadot) --- */
+body {
+    background-image: 
+      linear-gradient(to bottom, #2890FF 0%, transparent 15%, transparent 85%, #2890FF 100%),
+      radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 1.5px),
+      linear-gradient(to bottom, #2890FF 0%, #ffffff 50%, #2890FF 100%);
+    background-size: 100% 100%, 25px 25px, 100% 100%; 
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- 2. Kotak Hijau Utama --- */
+.result-main-container {
+    width: 92%; 
+    max-width: 1200px; 
+    height: 90vh; 
+    
+    background-image: 
+      linear-gradient(to bottom, #72E085 0%, transparent 15%, transparent 85%, #72E085 100%),
+      radial-gradient(rgba(255, 255, 255, 0.5) 1.5px, transparent 1.5px),
+      linear-gradient(to bottom, #72E085 0%, #ffffff 50%, #72E085 100%);
+    background-size: 100% 100%, 25px 25px, 100% 100%; 
+    
+    border: 2px solid #000000;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    
+    display: flex;
+    flex-direction: column;
+    /* Padding atas-bawah diseimbangkan karena top-nav hilang */
+    padding: 40px 40px 25px 40px; 
+}
+
+/* --- AREA TENGAH (Layout Foto & Tombol) --- */
+.content-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; 
+    gap: 50px; 
+}
+
+/* --- KOLOM KIRI: Wadah Foto --- */
+.photo-column {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; 
+    padding-right: 20px;
+}
+
+/* --- Wadah Pink (Diperbaiki agar tidak nabrak bawah) --- */
+/* --- Wadah Pink (Diperbaiki agar tidak nabrak bawah) --- */
+.pink-photo-wrapper {
+    width: 100%;
+    background-image: linear-gradient(to bottom, #F065CC 0%, transparent 15%, transparent 85%, #F065CC 100%), radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 1.5px), linear-gradient(to bottom, #F065CC 0%, #ffffff 50%, #F065CC 100%);
+    background-size: 100% 100%, 25px 25px, 100% 100%;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 1px 1px 0px #000000;
+    max-width: 450px; /* Dikecilkan sedikit agar aman di layar */
+    max-height: 65vh; /* KUNCI: Mencegah kotak melar nabrak teks bawah */
+    aspect-ratio: 1.05 / 1; 
+    
+    padding: 15px; /* Padding dikurangi agar ruang untuk foto makin luas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Gambar Hasil di Dalam Panel (Dibuat Full & Di-mirror Balik) --- */
+.pink-photo-wrapper img {
+    width: 100%;  /* Memaksa foto mengisi lebar penuh */
+    height: 100%; /* Memaksa foto mengisi tinggi penuh */
+    object-fit: contain; 
+ 
+    
+}
+
+/* --- KOLOM KANAN: Deretan Tombol --- */
+.button-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 30px;
+    padding-left: 20px;
+}
+
+.png-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.png-btn img {
+    height: 65px; 
+    width: auto;
+}
+
+.png-btn:hover { transform: scale(1.03); }
+.png-btn:active { transform: scale(0.95); }
+
+/* --- AREA BAWAH (Footer Thank You) --- */
+.footer-layout {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    padding-bottom: 10px;
+}
+
+.img-thankyou {
+    height: 40px; 
+    width: auto;
+}
+
+/* ========================================== */
+/* DESAIN CUSTOM MODAL (POP-UP EMAIL) */
+/* ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* Latar belakang gelap transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    
+    /* Animasi Pop-up */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: #ffffff;
+    background-image: radial-gradient(rgba(240, 101, 204, 0.2) 2px, transparent 2px);
+    background-size: 20px 20px;
+    
+    border: 3px solid #000000;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 6px 6px 0px #000000;
+    
+    /* Animasi Bouncing */
+    transform: translateY(-50px) scale(0.9);
+    transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.modal-overlay.show .modal-box {
+    transform: translateY(0) scale(1);
+}
+
+.modal-title {
+    color: #BA4CE1;
+    font-size: 24px;
+    margin-bottom: 10px;
+    -webkit-text-stroke: 0.5px #000000;
+}
+
+.modal-desc {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    outline: none;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.modal-input:focus {
+    border-color: #2890FF;
+    background: #f0f8ff;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #000000;
+    transition: all 0.1s ease;
+}
+
+.modal-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #000000;
+}
+
+.btn-batal {
+    background: #FF5A5A;
+    color: white;
+}
+
+.btn-kirim {
+    background: #72E085;
+    color: #000;
+}

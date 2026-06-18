@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: 
+      linear-gradient(to bottom, #2890FF 0%, transparent 15%, transparent 85%, #2890FF 100%),
+      radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 1.5px),
+      linear-gradient(to bottom, #2890FF 0%, #ffffff 50%, #2890FF 100%);
+    background-size: 100% 100%, 25px 25px, 100% 100%; 
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.landing-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 85%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 25px;
+    background-color: #47D974;
+    z-index: 1;
+}
+
+.title-image {
+    position: relative;
+    z-index: 2;
+    width: 500px;
+    max-width: 100%;
+    top: 33%;
+    display: block;
+    margin: 0 auto;
+    align-self: center;
+    filter: drop-shadow(0px 0px 40px rgba(255, 255, 255, 0.5));
+}
+
+
+
+.btn-start {
+    z-index: 2;
+    background: linear-gradient(0deg, #47D974 0%, #F5F5F5 100%);
+    border: 2px solid #000000;
+    box-shadow: 1px 1px 0px #000000;
+    border-radius: 20px;
+
+    padding: 0px 40px;
+    font-size: 35px;
+    line-height: 1;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000000;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* Efek saat diklik biar makin interaktif */
+.btn-start:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #000000;
+}
+
+/* --- GRUP DEKORASI --- */
+.decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.bunny {
+    position: absolute;
+    right: 403px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 105px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Pengaturan dasar untuk semua bintang */
+.star {
+    position: absolute;
+    width: 30px;
+    z-index: 2;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+/* Mengatur posisi masing-masing bintang (koordinat bebas) */
+.star-top-right {
+    top: 15%;
+    right: 10%;
+    width: 40px;
+    animation-delay: 0s;
+}
+
+.star-mid-left {
+    top: 40%;
+    left: 12%;
+    animation-delay: 0.4s;
+}
+
+.star-bottom-right-1 {
+    bottom: 270px;
+    right: 390px;
+    width: 20px;
+    animation-delay: 0.8s;
+}
+
+.star-bottom-right-2 {
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 1.2s;
+}
+
+.star-extra-1 {
+    top: 20%;
+    left: 30%;
+    animation-delay: 1.6s;
+}
+
+.star-extra-2 {
+    bottom: 30%;
+    left: 5%;
+    animation-delay: 2s;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(215px, 20px);
+    width: 70px;
+    z-index: 3;
+}
+
+/* --- ANIMASI BINTANG --- */
+@keyframes twinkle {
+    0% {
+        transform: scale(1);
+        opacity: 0.5; /* Agak redup */
+    }
+    50% {
+        transform: scale(1.2); /* Membesar sedikit */
+        opacity: 1; /* Menyala terang maksimal */
+        filter: drop-shadow(0px 0px 10px #FBE440); /* Tambahan efek cahaya kuning */
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5; 
+    }
+}
+
+
+
+/* ===== Bagian Select Frame ===== */
+.selected-theme-title {
+    font-family: 'Helvetica', Arial, sans-serif;
+    color: #FFFFFF; /* Warna isi tulisan */
+    font-size: 2.5rem; /* Sesuaikan besarnya */
+    margin: 10px 0;
+    
+    /* 1. Membuat garis tepi hitam ketebalan 1.5px */
+    -webkit-text-stroke: 1.5px #000000;
+    
+    /* 2. Membuat bayangan (shadow) tebal hitam ala Y2K */
+    text-shadow: 2px 2px 0px #000000;
+    
+    /* 3. Menarik tulisannya secara vertikal agar terlihat agak "stretch" */
+    transform: scaleY(1.3);
+    transform-origin: left bottom; /* Titik tumpu saat ditarik */
+}
+

@@ -1,0 +1,335 @@
+/* --- RESET DASAR --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', Arial, sans-serif;
+}
+
+/* 1. BACKGROUND LUAR (Biru 2890FF) */
+body {
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 1.5px),
+        linear-gradient(to bottom, #2890FF 0%, #ffffff 50%, #2890FF 100%);
+    background-size: 25px 25px, 100% 100%; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Wadah Penengah */
+.container {
+    width: 95%;
+    max-width: 1200px; /* Diperlebar karena desainnya landscape */
+}
+
+/* 2. JENDELA UTAMA (Gradasi Ungu - Putih - Ungu + Bintik-bintik) */
+/* 2. JENDELA UTAMA (Gradasi Ungu - Putih - Ungu + Bintik-bintik Fade) */
+.capture-window {
+    background-image: 
+        /* Layer 1: Penutup ungu di atas & bawah biar bintiknya nge-fade */
+        linear-gradient(to bottom, #BA4CE1 0%, transparent 15%, transparent 85%, #BA4CE1 100%),
+        /* Layer 2: Bintik-bintik putih */
+        radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 1.5px),
+        /* Layer 3: Warna dasar ungu-putih-ungu */
+        linear-gradient(to bottom, #BA4CE1 0%, #ffffff 50%, #BA4CE1 100%);
+    background-size: 100% 100%, 25px 25px, 100% 100%; 
+    
+    border: 2px solid #000000;
+    border-radius: 20px; 
+    padding: 30px;
+    box-shadow: 1px 2px 0px #000000; 
+    
+    display: flex;
+    gap: 30px; 
+    
+    /* --- UBAH ANGKA INI --- */
+    height: 80vh; /* Awalnya 85vh, kita turunkan sedikit biar tidak terlalu panjang ke bawah */
+}
+
+
+/* --- PANEL KIRI (Kamera & Tombol) --- */
+.panel-kiri {
+    flex: 1 1 50%; /* Memaksa minta jatah ruang persis 50% */
+    max-width: 50%; /* Mencegah melar berlebihan */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.back-link {
+    height: 40px;
+    margin: 0; 
+    display: flex;
+    align-items: center; 
+}
+
+
+/* Kotak Layar Kamera */
+.camera-container {
+    flex: 1;
+    position: relative;
+    border: 3px solid #000000;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2); /* Transparan biar bintik-bintik window kelihatan */
+    overflow: hidden;
+}
+
+/* --- ANIMASI BERKEDIP (BLINK) --- */
+@keyframes kedip {
+    0% { opacity: 1; }    /* Menyala penuh */
+    50% { opacity: 0.2; } /* Meredup hampir hilang */
+    100% { opacity: 1; }  /* Menyala penuh lagi */
+}
+
+.rec-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 25px; 
+    z-index: 10; 
+    
+    /* Panggil sihir animasinya di sini */
+    animation: kedip 1.5s infinite; /* Berkedip setiap 1.5 detik tanpa henti */
+}
+
+#camera-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Efek mirror */
+}
+
+/* Deretan Tombol Upload & Capture */
+.camera-controls {
+    height: 50px;
+    margin: 0; /* Menghapus margin-top nakal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+}
+
+/* --- PANEL KANAN (Frame & Counter) --- */
+.panel-kanan {
+    flex: 1 1 50%; /* Memaksa minta jatah ruang persis 50% */
+    max-width: 50%; /* Mencegah melar berlebihan */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 15px;
+}
+
+.finish-container {
+    height: 50px;
+    margin: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.counter-box {
+    height: 40px; /* Harus sama persis dengan back-link (40px) */
+    margin: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px; /* Padding samping dikurangi sedikit biar kotaknya mengecil */
+    
+    background: linear-gradient(180deg, #ffff 0%, #F065CC 100%); 
+    border: 2px solid #000000;
+    border-radius: 20px;
+    
+    /* Penyesuaian Font */
+    font-size: 25px; /* Font sedikit dikecilkan */
+    color: #FFFFFF;
+    font-weight: bold;
+    -webkit-text-stroke: 0.1px #000000;
+}
+
+/* 1. Atur Kotak Kuning agar memposisikan Bungkusan ke tengah */
+.frame-preview-container {
+    width: 100%;
+    flex: 1;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FBE440 100%); 
+    border: 3px solid #000000;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px; /* Ruang napas luar */
+}
+
+/* 2. Bungkusan Baru (Sihir Peluk Erat) */
+.frame-wrapper {
+    position: relative;
+    height: 100%; /* Memaksa bungkusan mengikuti tinggi kotak kuning */
+    width: max-content;  /* Lebarnya menyesuaikan proporsi gambar otomatis */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. Frame Overlay (Anti Nge-Zoom) */
+#selected-frame-overlay {
+    position: relative; 
+    height: 100%; /* Mengunci tinggi agar muat di kotak kuning */
+    width: auto;  /* Lebarnya akan menyesuaikan secara proporsional */
+    display: block;
+    
+    
+    z-index: 10; 
+    pointer-events: none; 
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out; 
+}
+
+/* 4. Photo Grid (Posisi diatur per-frame dengan top/left/right/bottom) */
+#photo-grid {
+    position: absolute;
+    z-index: 5; 
+    display: grid;
+}
+
+/* ========================================= */
+/* --- KALIBRASI AREA LUBANG FOTO PER-FRAME --- */
+/* Dihitung dari ukuran Figma yang presisi     */
+/* top/bottom % = relatif terhadap TINGGI      */
+/* left/right % = relatif terhadap LEBAR       */
+/* ========================================= */
+
+/* Powerpuff A (638x567, 2x2, kotak 270x160) */
+/* Lubang: (34,72) (334,72) (34,259) (334,259) */
+/* top=72/567 bottom=(567-419)/567 left=34/638 right=34/638 */
+/* row-gap=27/(567-72-148)=27/347 col-gap=30/(638-34-34)=30/570 */
+.frame-powerpuff-a { 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    top: 12.70%; bottom: 26.10%; left: 5.33%; right: 5.33%;
+    gap: 7.78% 5.26%; 
+}
+
+/* Super Mario A (638x567, 2x2, kotak 270x160) */
+/* Lubang: (34,67) (334,67) (34,254) (334,254) */
+/* top=67/567 bottom=(567-414)/567 left=34/638 right=34/638 */
+.frame-mario-a { 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    top: 11.30%; bottom: 26.10%; left: 5.33%; right: 5.33%;
+    gap: 7.78% 5.26%; 
+}
+
+/* Powerpuff B (319x567, 2 vertikal, kotak 270x160) */
+/* Lubang: (22,90) (22,280) */
+/* top=90/567 bottom=(567-440)/567 left=22/319 right=27/319 */
+/* row-gap=30/350 */
+/* Powerpuff B (319x567, 2 vertikal, kotak 270x160) */
+
+/* Powerpuff B (319x567, 2 vertikal, kotak 270x160) */
+/* Posisi presisi berdasarkan data desain Figma */
+.frame-powerpuff-b { 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    top: 15.17%; 
+    bottom: 23.10%; 
+    left: 7.84%; 
+    right: 7.52%;
+    gap: 8.57%; 
+}
+
+/* Super Mario B (319x567, 3 vertikal, kotak 270x152) */
+/* Lubang: (25,19) (25,183) (25,347) */
+/* top=19/567 bottom=(567-499)/567 left=25/319 right=24/319 */
+/* Super Mario B (319x567, 3 vertikal, kotak 270x152) */
+.frame-mario-b { 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    
+    /* Angka yang sudah disesuaikan dengan "Teknik Bleed" Anti-Bocor */
+    top: 3.0%;    /* Ditarik sedikit ke atas */
+    bottom: 11.5%; /* Ditarik sedikit ke bawah */
+    left: 7.2%;   /* Dilebarkan ke kiri */
+    right: 7.0%;  /* Dilebarkan ke kanan */
+    gap: 2.1%;    /* Celah dirapatkan biar aman */
+}
+
+/* Zootopia (319x567, 3 vertikal, kotak 270x152) */
+/* Lubang: (24,20) (24,192) (24,364) */
+/* top=20/567 bottom=(567-516)/567 left=24/319 right=25/319 */
+/* row-gap=20/496 */
+/* Zootopia (319x567, 3 vertikal, kotak 270x152) */
+/* Zootopia - Final Tweak Anti Kuning-Kuning Club */
+.frame-zootopia { 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    
+    top: 2.8%;    /* Ditarik lagi ke atas menutupi lengkungan atas */
+    bottom: 8.2%; /* Ditarik lagi ke bawah sedikit */
+    left: 6.8%;   /* Ditarik ke kiri biar makin aman */
+    right: 6.5%;  /* Kunci utama: Ditarik ke kanan untuk melibas garis kuning di sisi kanan */
+    gap: 3.2%;    /* Celah makin dirapatkan biar tidak ada yang ngintip di tengah */
+}
+
+/* Lany XXL (319x567, 3 vertikal, kotak 270x152) */
+/* Lubang: (20,24) (20,194) (20,363) */
+/* top=24/567 bottom=(567-515)/567 left=20/319 right=29/319 */
+/* row-gap=17.5/491 */
+/* Lany XXL (319 × 567, 3 foto vertikal, kotak 270 × 152) */
+.frame-lany {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr; /* Kembalikan ke 1fr agar pembagian tingginya seimbang */
+    
+    top: 3.8%;    /* KUNCI MATI: Jangan diubah karena kotak 1 sudah pas! */
+    bottom: 8.0%; /* Biarkan segini dulu */
+    left: 5.5%;   
+    right: 6.0%;  
+    gap: 1.5%;    /* <-- UBAH INI: Angkanya dikecilkan (dari 2.4% ke 1.5%) untuk menarik kotak 2 & 3 ke atas */
+}
+
+
+/* Desain setiap jepretan foto */
+.photo-result {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+     
+    border-radius: 5px;
+}
+
+/* ========================================= */
+/* --- PENGATURAN UMUM TOMBOL --- */
+/* ========================================= */
+.btn-img {
+    height: 50px; 
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.btn-img:hover { transform: scale(1.05); }
+.btn-img:active { transform: scale(0.95); }
+.btn-finish { height: 45px; }
+
+.hidden { display: none !important; }
+
+/* Mengecilkan khusus tombol Back */
+.btn-back {
+    height: 40px; 
+    margin: 0; 
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+/* --- ANGKA HITUNG MUNDUR SEMENTARA --- */
+#countdown-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    height: 100px; 
+    object-fit: contain;
+    filter: drop-shadow(4px 4px 0px #000000); 
+    z-index: 20; 
+}

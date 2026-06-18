@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth - Hasil Akhir</title>
+    <link rel="stylesheet" href="style-hasil.css">
+</head>
+<body>
+
+    <div class="result-main-container">
+    
+        <div class="content-layout">
+            
+            <div class="photo-column">
+                <div class="pink-photo-wrapper">
+                    <img id="final-image" src="Tampilan Hasil Frame A.png" alt="Hasil Photobooth">
+                </div>
+            </div>
+
+            <div class="button-column">
+                <button class="png-btn" id="btn-save"><img src="src/Save.png" alt="Save to Gallery"></button>
+                <button class="png-btn" id="btn-email"><img src="src/send.png" alt="Send to Email"></button>
+                <button class="png-btn" id="btn-home"><img src="src/home.png" alt="Home"></button>
+            </div>
+            
+        </div>
+
+        <div class="footer-layout">
+            <img src="src/thankyou.png" alt="Thank you for using this Photobooth" class="img-thankyou">
+        </div>
+
+    </div>
+
+    <div id="email-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h2 class="modal-title">Kirim ke Email 💌</h2>
+            <p class="modal-desc">Masukkan alamat email tujuan untuk mengirim foto ini.</p>
+            <input type="email" id="email-input" class="modal-input" placeholder="contoh@gmail.com">
+            
+            <div class="modal-buttons">
+                <button id="btn-cancel-email" class="modal-btn btn-batal">Batal</button>
+                <button id="btn-send-email" class="modal-btn btn-kirim">Kirim Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="hasil.js"></script>
+</body>
+</html>

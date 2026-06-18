@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth - Capture</title>
+    <link rel="stylesheet" href="style-capture.css">
+</head>
+<body>
+
+    <main class="container">
+        
+        <div class="capture-window">
+            
+            <div class="panel-kiri">
+                
+                <a href="select-frame.html" class="back-link">
+                    <img src="src/ButtonBack.png" alt="Back" class="btn-img btn-back">
+                </a>
+
+                <div class="camera-container">
+                    <img src="src/rec.png" alt="Recording" class="rec-icon">
+                    <video id="camera-feed" autoplay playsinline></video>
+                    
+                    <img id="countdown-display" class="hidden" src="" alt="Timer">
+                </div>
+
+                <div class="camera-controls">
+                    
+                    <input type="file" id="input-upload-file" accept="image/*" class="hidden">
+                    
+                    <img src="src/upload.png" alt="Upload" class="btn-img btn-upload" id="btn-upload">
+                    
+                    <img src="src/capture.png" alt="Capture" class="btn-img btn-action" id="btn-capture">
+                    <img src="src/retake.png" alt="Retake" class="btn-img btn-action hidden" id="btn-retake">
+                </div>
+
+            </div>
+
+            <div class="panel-kanan">
+                
+                <div class="counter-box" id="photo-counter">0/4</div>
+
+                <div class="frame-preview-container">
+                   <div class="frame-wrapper">
+                        <div id="photo-grid"></div>
+                        <img src="" id="selected-frame-overlay" alt="Frame Overlay">
+                    </div>            
+               </div>
+
+                <div class="finish-container">
+                    <img src="src/finish.png" alt="Finish" class="btn-img btn-finish hidden" id="btn-finish">
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script-capture.js"></script>
+</body>
+</body>
+</html>
